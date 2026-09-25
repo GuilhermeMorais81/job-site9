@@ -1,4 +1,3 @@
-
 class Job {
     constructor(companyId, id, title, description, salary) {
         this.companyId = companyId;
@@ -10,3 +9,5 @@ class Job {
         this.createdAt = new Date().toLocaleDateString('en-CA');
     }
 }
+
+module.exports = Job;

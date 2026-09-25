@@ -11,3 +11,5 @@ class User {
         return this.isCompany === 0;
     }
 }
+
+module.exports = User;

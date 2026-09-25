@@ -5,3 +5,5 @@ class JobApplication {
         this.curriculumVitae = curriculumVitae;
     }
 }
+
+module.exports = JobApplication;
