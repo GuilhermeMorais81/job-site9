@@ -1,3 +1,5 @@
+import type { User } from "../models/User.js";
+
 export class Result {
   readonly isSuccess: boolean;
   private readonly _errorMsg : string | undefined;
