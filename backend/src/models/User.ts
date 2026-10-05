@@ -6,6 +6,7 @@ import type { UserCreationReq } from "../interfaces/UserCreationReq.js";
 import { ResultValue } from "../shared/ResultValue.js";
 import { UserValidator } from "../validators/UserValidators.js";
 import { hash } from "argon2";
+import type { UserLoginRes } from "../interfaces/UserLoginRes.js";
 
 export class User {
     id : string;
@@ -42,5 +43,13 @@ export class User {
         return new User(user.name, user.email, passwordHash, user.isCompany);
     }
 
+    toUserLoginRes() : UserLoginRes {
+        return {
+            id: this.id,
+            name: this.name,
+            email: this.email,
+            isCompany: this.isCompany
+        }
+    }
 }
 

@@ -1,4 +1,4 @@
-import type { User } from "../models/User.js";
+import { User } from "../models/User.js";
 import { Result } from "../shared/Result.js";
 import { UniversalValidators } from "./UniversalValidators.js";
 
@@ -23,6 +23,4 @@ export class JobValidators {
         return salary >= 0 && salary <= 1000000 ?
             Result.success() : Result.failure("salario possui valor invalido");
     }
-
-
 }
