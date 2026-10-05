@@ -26,6 +26,7 @@ export const JobSchema = new EntitySchema<Job>({
         description: {
             type:'string',
             fieldName:'description',
+            nullable: true
         },
         salary: {
             type:'numeric',
