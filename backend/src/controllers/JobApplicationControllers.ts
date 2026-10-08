@@ -26,6 +26,26 @@ export const listJobApplications = async (
 ) => {
     if(await orm.em.findOne(User, {id:req.params.companyId, isCompany:true}) === null)
         res.status(200).json({message: "Empresa criadora da vaga não encontrada"});
-    let list = await orm.em.find(JobApplicationSchema, {job: req.params.jobId});
+    let list = await orm.em.find(
+        JobApplicationSchema, 
+        {job: req.params.jobId},
+        {fields:['applicant.name']}
+    );
     res.status(200).json(list);
+}
+
+export const loadJobApplication = async (
+    req : Request<{companyId : string, jobId : string, applicantId : string}, {}, {}>,
+    res : Response
+) => {
+    const jobApplication = await orm.em.findOne(
+        JobApplicationSchema, 
+        {job: req.params.jobId, applicant: req.params.applicantId}
+    );
+    if(jobApplication === null) 
+        return res.status(400).json({message: "aplicação de vaga não encontrada"});
+    res.setHeader('Content-Type', jobApplication.mimeType);
+    res.setHeader('Content-Disposition',
+    `inline; filename="${jobApplication.fileName}"`);
+    return res.send(jobApplication.cvData);
 }
