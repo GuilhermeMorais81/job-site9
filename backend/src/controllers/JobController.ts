@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { orm } from "../app.js";
 import { Job } from "../models/Job.js";
 import type { JobCreation } from "../interfaces/JobCreation.js";
+import { title } from "node:process";
 
 export const listJobs = async (
     req : Request,
@@ -46,4 +47,26 @@ export const getJob = async (
     if(job === null) 
         return res.status(404).json({message: "vaga não encontrada"});
     res.status(200).json(job);
+}
+
+export const getBySearch = async (
+    req : Request<{title : string},{},{}>,
+    res : Response
+) => {
+    if(!req.params.title)
+        return res.status(400).json({message: "pesquisa vazia"});
+    const list = await orm.em.find(
+        Job,
+        {active: true, title: {$like:`%${req.params.title}%`}}, 
+        {
+            
+            fields: ['title', 'createdAt', 'company.name'],
+            populate: ['company'],
+            orderBy: {
+                createdAt:'DESC'
+            },
+            limit: 20,
+        }
+    )
+    res.status(200).json(Job.toJobSummaries(list as Job[]));
 }
