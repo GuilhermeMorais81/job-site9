@@ -19,10 +19,17 @@ export const JobApplicationSchema = new EntitySchema<JobApplication>({
             fieldName:'jobId',
             primary:true
         },
-        curriculumVitae: {
-            type:'blob',
-            fieldName:'curriculumVitae',
-            
+        cvData: {
+            type: 'blob',
+            fieldName:'cvData'
+        },
+        fileName: {
+            type:'string',
+            fieldName:'fileName'
+        },
+        mimeType: {
+            type:'string',
+            fieldName:'mimeType'
         }
     }
 });
