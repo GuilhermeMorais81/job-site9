@@ -38,7 +38,11 @@ export const getJob = async (
     req : Request<{id :string},{},{}>,
     res : Response
 ) => {
-    const job = await orm.em.findOne(Job, {id:req.params.id});
+    const job = await orm.em.findOne(
+        Job, 
+        {id:req.params.id},
+        {fields:['id', 'company.name','title','description','salary','createdAt']}
+    );
     if(job === null) 
         return res.status(404).json({message: "vaga não encontrada"});
     res.status(200).json(job);
