@@ -1,5 +1,6 @@
 import { orm } from "../app.js";
 import { Job } from "../models/Job.js";
+import { JobApplication } from "../models/JobApplication.js";
 import { User } from "../models/User.js";
 import { Result } from "../shared/Result.js";
 
@@ -17,6 +18,9 @@ export class JobApplicationValidators {
     async isValidUser() : Promise<Result> {
         let user = await orm.em.findOne(User, {id : this._userId});
         if(user === null) return Result.failure("usuario não encontrado");
+        if(user.isCompany) return Result.failure("uma empresa não pode se candidatar a vagas");
+        if(await orm.em.findOne(JobApplication, {applicant:user.id, job:this._jobId}) !== null)
+            return Result.failure("usuarios não podem se candidatar 2 vezes");
         return Result.success();
     }
     
