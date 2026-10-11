@@ -18,6 +18,7 @@
     "@types/node": "^26.6.3",
     "argon2": "^0.45.1",
     "axios": "^1.20.0",
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "multer": "^2.4.0",
     "sqlite3": "^6.0.1",
@@ -29,6 +30,7 @@
     "better-sqlite3@13.0.3": true
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/multer": "^2.3.0",
     "ts-node": "^10.9.2"

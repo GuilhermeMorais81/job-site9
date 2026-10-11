@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { MikroORM, RequestContext } from '@mikro-orm/sqlite';
 import config from './mikro-orm.config.js'
 import { jobRoutes } from './routes/JobRoutes.js';
@@ -6,6 +7,9 @@ import { userRoutes } from './routes/UserRoutes.js';
 import { jobApplicationRoutes } from './routes/JobApplicationRoutes.js';
 export const orm = await MikroORM.init(config);
 const app = express();
+app.use(cors({
+    origin:'http://localhost:4200'
+}))
 app.use(express.json());
 app.use((req, res, next) => {RequestContext.create(orm.em, next)})
 app.use('/user', userRoutes);
