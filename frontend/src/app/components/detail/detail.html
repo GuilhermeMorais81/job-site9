@@ -1,0 +1,25 @@
+<div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="card-title mb-1">{{ job()?.title }}</h2>
+        <h4 class="card-subtitle mb-4 text-muted">{{ job()?.companyName }}</h4>
+        
+        <hr class="my-3">
+
+        <div class="mb-4">
+          <h6 class="text-uppercase text-secondary fs-6 fw-bold">Job Overview</h6>
+          
+          <p class="text-secondary small mb-3">
+            <strong>Posted on:</strong> {{ job()?.createdAt | date: 'longDate' }}
+          </p>
+          <p class="text-secondary small mb-3">
+            {{job()?.description}}
+          </p>
+        </div>
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="button">
+            Apply Now
+          </button>
+        </div>
+      </div>
+    </div>
