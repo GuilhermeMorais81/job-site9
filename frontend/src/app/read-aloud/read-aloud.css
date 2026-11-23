@@ -1,0 +1,108 @@
+.read-aloud-toggle {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 8px 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background-color: var(--card);
+  color: var(--text);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition:
+    background-color 280ms var(--ease),
+    border-color 280ms var(--ease),
+    color 280ms var(--ease),
+    box-shadow 280ms var(--ease),
+    transform 120ms var(--ease);
+}
+
+.read-aloud-toggle:hover {
+  background-color: var(--raised);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.read-aloud-toggle:active {
+  transform: scale(0.97);
+}
+
+.read-aloud-toggle.on {
+  background-color: var(--text);
+  border-color: var(--text);
+  color: var(--page);
+}
+
+.read-aloud-toggle.on:hover {
+  background-color: #000;
+}
+
+.wave {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.4;
+  transition: stroke-dashoffset 320ms var(--ease), opacity 320ms var(--ease);
+}
+
+.read-aloud-toggle.on .wave {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+.read-aloud-toggle.on .wave-2 {
+  transition-delay: 90ms;
+}
+
+.state {
+  position: relative;
+  width: 44px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: var(--raised);
+  color: var(--text-2);
+  font-size: 13px;
+  overflow: hidden;
+  transition: background-color 280ms var(--ease), color 280ms var(--ease);
+}
+
+.read-aloud-toggle.on .state {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.state-off, .state-on {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 280ms var(--ease), opacity 200ms var(--ease);
+}
+
+.state-on {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.read-aloud-toggle.on .state-off {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.read-aloud-toggle.on .state-on {
+  transform: none;
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .read-aloud-toggle {
+    right: 16px;
+    bottom: 16px;
+  }
+}

@@ -1,0 +1,81 @@
+.back {
+  display: inline-block;
+  margin-bottom: 32px;
+  text-decoration: none;
+}
+
+.back:hover {
+  color: var(--text);
+}
+
+.ad {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 48px;
+  align-items: start;
+}
+
+.company {
+  color: var(--text-2);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.description {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.7;
+  white-space: pre-line;
+  max-width: 36rem;
+}
+
+.ad-side {
+  padding: 24px;
+}
+
+dl {
+  margin: 0 0 24px;
+}
+
+dt {
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+dd {
+  margin: 0 0 20px;
+}
+
+dd:last-child {
+  margin-bottom: 0;
+}
+
+.salary {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.posted {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .ad {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
