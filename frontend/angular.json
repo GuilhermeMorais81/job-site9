@@ -2,8 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm",
-    "analytics": "371b0b12-4d08-4e5b-8bdd-ddcdda19a018"
+    "packageManager": "yarn",
+    "analytics": "8cb769a9-031f-4522-8651-24d22c0b0499"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -27,15 +27,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "security": {
-              "allowedHosts": []
-            },
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
