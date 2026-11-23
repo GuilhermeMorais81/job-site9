@@ -1,0 +1,44 @@
+<section class="page page-narrow">
+    <div class="panel">
+        <h1 class="form-title">Create an account</h1>
+        <p class="form-intro">Job seekers apply to roles, companies post them</p>
+
+        <form (ngSubmit)="submit()">
+            <div class="field">
+                <span class="label" id="accountTypeLabel">Account type<span class="required" aria-hidden="true">*</span></span>
+                <div class="segmented" role="radiogroup" aria-labelledby="accountTypeLabel">
+                    <input type="radio" name="accountType" id="typeUser" value="user" [(ngModel)]="accountType">
+                    <label for="typeUser">Job seeker</label>
+
+                    <input type="radio" name="accountType" id="typeCompany" value="company" [(ngModel)]="accountType">
+                    <label for="typeCompany">Company</label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="name">{{ accountType === "company" ? "Company name" : "Full name" }}<span class="required" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" required [(ngModel)]="name">
+            </div>
+
+            <div class="field">
+                <label for="email">Email<span class="required" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required [(ngModel)]="email">
+            </div>
+
+            <div class="field">
+                <label for="password">Password<span class="required" aria-hidden="true">*</span></label>
+                <input type="password" id="password" name="password" autocomplete="new-password" aria-describedby="passwordHint" required [(ngModel)]="password">
+                <p class="hint" id="passwordHint">6 to 30 characters</p>
+            </div>
+
+            @if(error()) {
+                <p class="form-error" role="alert">{{ error() }}</p>
+            }
+
+            <button type="submit" class="button button-primary button-large button-block" [disabled]="isSending()">
+                {{ isSending() ? "Creating account" : "Create account" }}
+            </button>
+        </form>
+    </div>
+    <p class="form-switch">Already on Workwise? <a routerLink="/login">Log in</a></p>
+</section>

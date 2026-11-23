@@ -1,0 +1,45 @@
+<section class="page">
+  @if(search()) {
+    <h1 class="display">Roles matching "{{ search() }}"</h1>
+    <p class="subhead intro"><a routerLink="/">See all open roles</a></p>
+  }
+  @else {
+    <h1 class="display">Open roles</h1>
+    <p class="subhead intro">Jobs posted by companies hiring on Workwise</p>
+  }
+
+  @if(isLoading()) {
+    <p class="meta state" role="status">Loading roles</p>
+  }
+  @else if(hasError()) {
+    <p class="state">Could not load the roles. Try again later.</p>
+  }
+  @else {
+    <div class="list-head meta">
+      <span>{{ jobs().length }} {{ jobs().length === 1 ? "role" : "roles" }}</span>
+      <span>Posted</span>
+    </div>
+    <ul class="job-list">
+      @for(job of jobs(); track job.id) {
+        <li>
+          <a [routerLink]="['/jobs', job.id]" class="job-row">
+            <div class="job-main">
+              <h2 class="job-title">
+                @if(isRecent(job.createdAt)) {
+                  <span class="new-dot" title="Posted this week"></span>
+                  <span class="visually-hidden">New:</span>
+                }
+                {{ job.title }}
+              </h2>
+              <p class="job-company">{{ job.company }}</p>
+            </div>
+            <span class="meta">{{ toDate(job.createdAt) | date:"MMM d" }}</span>
+          </a>
+        </li>
+      }
+      @empty {
+        <li class="state">No roles found. Try another job title.</li>
+      }
+    </ul>
+  }
+</section>
